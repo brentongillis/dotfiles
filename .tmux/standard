@@ -1,0 +1,5 @@
+# standard initialization
+rename-session -t 0 standard
+rename-window -t 0 main
+splitw -h -p 35 -c ~/GitHub
+splitw -v -p 50
