@@ -1,27 +1,23 @@
 " ~/.vimrc
 set encoding=utf-8
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'https://github.com/pearofducks/vim-quack-lightline.git'
+Bundle 'edkolev/tmuxline.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kchmck/vim-coffee-script'
+
+filetype plugin indent on
 
 " syntax and color scheme
 set t_Co=256
 syntax enable
-colorscheme jellybeans
-
-" lightline theme
-let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'fugitive', 'filename' ] ]
-  \ },
-  \ 'component_function': {
-  \   'fugitive': 'MyFugitive',
-  \   'readonly': 'MyReadonly',
-  \   'modified': 'MyModified',
-  \   'filename': 'MyFilename'
-  \ },
-  \ 'separator': { 'left': '', 'right': '' },
-  \ 'subseparator': { 'left': '', 'right': '' }
-  \ }
+set background=dark
+colorscheme solarized
 
 " Taglist
 filetype on
@@ -31,11 +27,11 @@ let Tlist_Close_On_Select = 1
 nnoremap <C-l> :TlistToggle<CR>
 
 " Keymaps
-command F execute "%!astyle --indent=spaces=2"
+command F execute "%!astyle --indent=spaces=4"
 
 " Misc stuff that I haven't organized yet
-set tabstop=2
-set softtabstop=2
+set tabstop=4
+set softtabstop=4
 set expandtab " tabs are now spaces
 set number " show number lines
 " set cursorline " show current cursor line
@@ -106,3 +102,63 @@ function! ToggleVExplorer()
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
+
+" theme test
+let g:lightline = {
+      \ 'colorscheme': 'quack',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive'],[ 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LLFugitive',
+      \   'readonly': 'LLReadonly',
+      \   'modified': 'LLModified',
+      \   'filename': 'LLFilename',
+      \   'mode': 'LLMode'
+      \ }
+      \ }
+
+function! LLMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ lightline#mode() == 'NORMAL' ? 'N' :
+        \ lightline#mode() == 'INSERT' ? 'I' :
+        \ lightline#mode() == 'VISUAL' ? 'V' :
+        \ lightline#mode() == 'V-LINE' ? 'V' :
+        \ lightline#mode() == 'V-BLOCK' ? 'V' :
+        \ lightline#mode() == 'REPLACE' ? 'R' : lightline#mode()
+endfunction
+
+function! LLModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LLReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "!"
+  else
+    return ""
+  endif
+endfunction
+
+function! LLFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! LLFilename()
+  return ('' != LLReadonly() ? LLReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LLModified() ? ' ' . LLModified() : '')
+endfunction
