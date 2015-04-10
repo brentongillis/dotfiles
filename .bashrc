@@ -20,7 +20,9 @@ alias cdc='cd && clc'
 alias m='mocp'
 
 ## Private Aliases ##
-source .bash_alias
+if [ -f ~/.bash_alias ]; then
+    source ~/.bash_alias
+fi
 
 ## Prompt ##
 export PS1='\u \[\e[0;31m\][\[\e[00m\]\W\[\e[0;31m\]]\[\e[00m\] \[\e[0;35m\]>>\[\e[00m\] '
