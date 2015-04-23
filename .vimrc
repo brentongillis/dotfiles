@@ -22,10 +22,17 @@ filetype plugin indent on
 set t_Co=256
 syntax enable
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_contrast="high"
+"let g:solarized_contrast="high"
+"let g:solarized_termtrans=1
 "let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme jellybeans
+"colorscheme solarized
+
+"highlight Normal ctermbg=NONE
+"highlight nonText ctermbg=NONE
+
+set list!
+set listchars=tab:>-,trail:·
 
 " Taglist
 filetype on
@@ -64,7 +71,7 @@ let g:gitgutter_sign_column_always = 1
 let g:netrw_liststyle=3
 
 let g:lightline = {
-            \ 'colorscheme': 'solarized',
+            \ 'colorscheme': 'jellybeans',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'filename' ] ]
