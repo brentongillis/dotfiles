@@ -64,7 +64,7 @@ let g:gitgutter_sign_column_always = 1
 let g:netrw_liststyle=3
 
 let g:lightline = {
-            \ 'colorscheme': 'default',
+            \ 'colorscheme': 'base16_ocean',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'filename' ] ]
