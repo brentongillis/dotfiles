@@ -2,7 +2,8 @@
 
 My current dotfiles.
 
-Nothing special here.
+###### Base16 Colors
+Need base16-{Shell,Vim,XFCE4 Terminal} from [here](https://github.com/chriskempson/base16).
 
 ###### Autoformatter
 For the autoformatter to work, the system needs to have the following:

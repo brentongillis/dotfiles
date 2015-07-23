@@ -11,10 +11,9 @@ Bundle 'edkolev/tmuxline.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'rust-lang/rust.vim'
+Plugin 'chriskempson/base16-vim'
 
 filetype plugin indent on
 
@@ -22,14 +21,8 @@ filetype plugin indent on
 set t_Co=256
 syntax enable
 set background=dark
-"let g:solarized_contrast="high"
-"let g:solarized_termtrans=1
-"let g:solarized_termcolors=256
-colorscheme jellybeans
-"colorscheme solarized
-
-"highlight Normal ctermbg=NONE
-"highlight nonText ctermbg=NONE
+let base16colorspace=256
+colorscheme base16-ocean
 
 set list!
 set listchars=tab:>-,trail:·
@@ -71,7 +64,7 @@ let g:gitgutter_sign_column_always = 1
 let g:netrw_liststyle=3
 
 let g:lightline = {
-            \ 'colorscheme': 'jellybeans',
+            \ 'colorscheme': 'default',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'filename' ] ]
