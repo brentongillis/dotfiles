@@ -1,0 +1,8 @@
+#!/bin/bash
+# Create symlinks
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+ln -s $(pwd)/.vimrc ~
+ln -s $(pwd)/.tmux ~
+ln -s $(pwd)/.tmux.conf ~
