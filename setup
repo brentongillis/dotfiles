@@ -1,8 +1,22 @@
 #!/bin/bash
 # Create symlinks
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+read -p "This will overwrite the dotfiles. Continue? <y/N> " prompt
 
-ln -s $(pwd)/.vimrc ~
-ln -s $(pwd)/.tmux ~
-ln -s $(pwd)/.tmux.conf ~
+if [[ $prompt =~ [yY](es)* ]]; then
+
+    things=(.vimrc .tmux .tmux.conf .bashrc)
+    pwd=$(pwd)
+
+    if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
+    for item in ${things[*]}; do
+        if [ -f ~/$item ] || [ -d ~/$item ]; then
+            rm -rf ~/$item
+        fi
+        ln -s $pwd/$item ~
+    done
+else
+    echo Exiting
+fi
