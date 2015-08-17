@@ -38,6 +38,8 @@ export VISUAL=vim
 ## History Time Format ##
 HISTTIMEFORMAT="%y-%m-%d %T "
 
+export RUST_SRC_PATH=/usr/src/rust/src
+
 ## My Scripts ##
 PATH="${PATH}:/home/brenton/.bin"
 
