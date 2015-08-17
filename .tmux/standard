@@ -1,6 +1,6 @@
 # standard initialization
 rename-session -t 0 standard
-rename-window -t 0 main
+rename-window -t 0 git
 splitw -h -p 50
 splitw -v -p 50 -t 0
 splitw -v -p 50 -t 1
