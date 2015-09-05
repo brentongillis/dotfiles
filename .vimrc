@@ -13,19 +13,17 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'chriskempson/base16-vim'
-Plugin 'phildawes/racer'
-Plugin 'rust-lang/rust.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'cespare/vim-toml'
+Plugin 'majutsushi/tagbar'
+Plugin 'bling/vim-bufferline'
 
 filetype plugin indent on
 
 set hidden
-let g:racer_cmd = "/usr/bin/racer"
-let $RUST_SRC_PATH="/usr/src/rust/src/"
 
 " syntax and color scheme
 set t_Co=256
@@ -37,14 +35,15 @@ colorscheme base16-ocean
 set list!
 set listchars=tab:>-,trail:·
 
-" Taglist
-" let Tlist_Compact_Format = 1
-" let Tlist_GainFocus_On_ToggleOpen = 1
-" let Tlist_Close_On_Select = 1
-" nnoremap <C-l> :TlistToggle<CR>
+" __tagbar__
+nmap <F8> :TagbarToggle<CR>
 
 " F3 to autoformat C uses astyle
 noremap <F3> :Autoformat<CR><CR>
+
+" Buffers
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
 
 " CODE FORMATTING
 " Astyle formatting
@@ -60,17 +59,18 @@ set pastetoggle=<F2>
 
 " Misc stuff that I haven't organized yet
 set tabstop=4
-"set softtabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab " tabs are now spaces
 set number " show number lines
-" set cursorline " show current cursor line
+set cursorline " show current cursor line
 set wildmenu " visual autocomplete menu
 " set statusline=2
 set laststatus=2
 set timeoutlen=50
 set colorcolumn=100
 let g:gitgutter_sign_column_always = 1
+let g:bufferline_echo = 0
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -96,13 +96,17 @@ let g:lightline = {
             \ 'colorscheme': 'default',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive', 'filename' ] ]
+            \             [ 'fugitive', 'filename' ],
+            \             [ 'bufferline' ] ],
+            \ },
+            \ 'component': {
+            \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_3#%{g:bufferline_status_info.after}'
             \ },
             \ 'component_function': {
             \   'fugitive': 'MyFugitive',
             \   'readonly': 'MyReadonly',
             \   'modified': 'MyModified',
-            \   'filename': 'MyFilename'
+            \   'filename': 'MyFilename',
             \ },
             \ }
 
