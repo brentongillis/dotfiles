@@ -91,9 +91,9 @@ function! g:NumberToggle()
 endfunc
 nnoremap <C-n> :call g:NumberToggle()<cr>
 
-"            \ 'colorscheme': 'base16_ocean',
+          " \ 'colorscheme': 'default',
 let g:lightline = {
-            \ 'colorscheme': 'default',
+            \ 'colorscheme': 'base16_ocean',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'filename' ],
