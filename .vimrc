@@ -91,7 +91,7 @@ function! g:NumberToggle()
 endfunc
 nnoremap <C-n> :call g:NumberToggle()<cr>
 
-          " \ 'colorscheme': 'default',
+
 let g:lightline = {
             \ 'colorscheme': 'base16_ocean',
             \ 'active': {
@@ -100,7 +100,7 @@ let g:lightline = {
             \             [ 'bufferline' ] ],
             \ },
             \ 'component': {
-            \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_3#%{g:bufferline_status_info.after}'
+            \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_2#%{g:bufferline_status_info.after}'
             \ },
             \ 'component_function': {
             \   'fugitive': 'MyFugitive',
