@@ -30,7 +30,7 @@ set t_Co=256
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme base16-eighties
 
 set list!
 set listchars=tab:>-,trail:·
