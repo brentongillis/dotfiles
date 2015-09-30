@@ -20,6 +20,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'cespare/vim-toml'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
+Plugin 'tpope/vim-markdown'
 
 filetype plugin indent on
 
