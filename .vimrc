@@ -17,9 +17,12 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'scrooloose/nerdtree'
-Plugin 'cespare/vim-toml'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
+Plugin 'hdima/python-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'burnettk/vim-angular'
+Plugin 'maksimr/vim-jsbeautify'
 
 filetype plugin indent on
 
@@ -53,7 +56,7 @@ let g:formatprg_h = "astyle"
 let g:formatprg_args_h = "--mode=h --style=ansi -pcHs4"
 
 " JS-Beautify
-let g:formatprg_args_expr_javascript = '"-".(&expandtab ? "s ".&shiftwidth : "t").(&textwidth ? " -w ".&textwidth : "")." -"'
+" let g:formatprg_args_expr_javascript = '"-".(&expandtab ? "s ".&shiftwidth : "t").(&textwidth ? " -w ".&textwidth : "")." -"'
 
 set pastetoggle=<F2>
 

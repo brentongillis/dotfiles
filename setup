@@ -1,22 +1,55 @@
 #!/bin/bash
 # Create symlinks
 
-read -p "This will overwrite the dotfiles. Continue? <y/N> " prompt
+run()
+{
+    read -p "This will overwrite the dotfiles. Continue? <y/N> " prompt
 
-if [[ $prompt =~ [yY](es)* ]]; then
+    if [[ $prompt =~ [yY](es)* ]]; then
 
-    things=(.vimrc .tmux .tmux.conf .bashrc)
-    pwd=$(pwd)
+        things=(.vimrc .tmux .tmux.conf .bashrc)
+        pwd=$(pwd)
 
-    if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
-        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    fi
-    for item in ${things[*]}; do
-        if [ -f ~/$item ] || [ -d ~/$item ]; then
-            rm -rf ~/$item
+        if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
+            git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
         fi
-        ln -s $pwd/$item ~
-    done
-else
-    echo Exiting
-fi
+        for item in ${things[*]}; do
+            if [ -f ~/$item ] || [ -d ~/$item ]; then
+                rm -rf ~/$item
+            fi
+            ln -s $pwd/$item ~
+        done
+    else
+        echo Exiting
+    fi
+}
+
+usage()
+{
+cat << EOF
+usage: $0 options
+
+This setup script will create symlinks to all dotfiles contained in this repo.
+
+OPTIONS:
+   -h      Show this message
+   -r      Specifies remote setup
+EOF
+}
+
+while getopts “ht:r” OPTION
+do
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            ;;
+        r)
+            sed -i -e 's/\\u/\\u(remote)/' ./.bashrc
+            run
+            ;;
+        ?)
+            run
+            ;;
+    esac
+done
