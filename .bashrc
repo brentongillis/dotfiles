@@ -26,7 +26,6 @@ fi
 export PS1='\u \[\e[0;31m\][\[\e[00m\]\W\[\e[0;31m\]]\[\e[00m\] \[\e[0;35m\]>>\[\e[00m\] '
 export EDITOR=vim
 export VISUAL=vim
-
 HISTTIMEFORMAT="%y-%m-%d %T "
 export RUST_SRC_PATH=/usr/src/rust/src
 PATH="${PATH}:/home/brenton/.bin"

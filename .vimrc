@@ -19,10 +19,6 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
-Plugin 'hdima/python-syntax'
-Plugin 'pangloss/vim-javascript'
-Plugin 'burnettk/vim-angular'
-Plugin 'maksimr/vim-jsbeautify'
 
 filetype plugin indent on
 
