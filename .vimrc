@@ -6,10 +6,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " Vundle Plugins
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'chriskempson/base16-vim'
@@ -19,6 +19,10 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'wting/rust.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'racer-rust/vim-racer'
 
 filetype plugin indent on
 
@@ -51,9 +55,6 @@ let g:formatprg_args_c = "--mode=c --style=ansi -pcHs4"
 let g:formatprg_h = "astyle"
 let g:formatprg_args_h = "--mode=h --style=ansi -pcHs4"
 
-" JS-Beautify
-" let g:formatprg_args_expr_javascript = '"-".(&expandtab ? "s ".&shiftwidth : "t").(&textwidth ? " -w ".&textwidth : "")." -"'
-
 set pastetoggle=<F2>
 
 " Misc stuff that I haven't organized yet
@@ -81,6 +82,23 @@ map <silent> <C-l> :wincmd l<CR>
 " Default to tree mode in explorer
 let g:netrw_liststyle=3
 
+let g:racer_cmd = "/usr/bin/racer"
+let $RUST_SRC_PATH="/usr/src/rust/src/"
+
+let g:tagbar_type_rust = {
+   \ 'ctagstype' : 'rust',
+   \ 'kinds' : [
+       \'T:types,type definitions',
+       \'f:functions,function definitions',
+       \'g:enum,enumeration names',
+       \'s:structure names',
+       \'m:modules,module names',
+       \'c:consts,static constants',
+       \'t:traits,traits',
+       \'i:impls,trait implementations',
+   \]
+   \}
+
 function! g:NumberToggle()
     if(&rnu == 1)
         set nornu
@@ -88,8 +106,7 @@ function! g:NumberToggle()
         set rnu
     endif
 endfunc
-nnoremap <C-n> :call g:NumberToggle()<cr>
-
+nnoremap <F4> :call g:NumberToggle()<cr>
 
 let g:lightline = {
             \ 'colorscheme': 'base16_ocean',
@@ -109,7 +126,6 @@ let g:lightline = {
             \ },
             \ }
 
-" Functions!
 function! MyModified()
     if &filetype == "help"
         return ""
@@ -146,55 +162,17 @@ function! MyFilename()
                 \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
-function! s:swap_lines(n1, n2)
-    let line1 = getline(a:n1)
-    let line2 = getline(a:n2)
-    call setline(a:n1, line2)
-    call setline(a:n2, line1)
-endfunction
-
-function! s:swap_up()
-    let n = line('.')
-    if n == 1
-        return
-    endif
-
-    call s:swap_lines(n, n - 1)
-    exec n - 1
-endfunction
-
-function! s:swap_down()
-    let n = line('.')
-    if n == line('$')
-        return
-    endif
-
-    call s:swap_lines(n, n + 1)
-    exec n + 1
-endfunction
-
-map <silent> <C-S-k> :call <SID>swap_up()<CR>
-map <silent> <C-S-j> :call <SID>swap_down()<CR>
-
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
 let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
             \ 'default' : '',
             \ 'vimshell' : $HOME.'/.vimshell_hist',
             \ 'scheme' : $HOME.'/.gosh_completions'
             \ }
 
-" Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
@@ -221,25 +199,6 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
