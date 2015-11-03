@@ -37,7 +37,7 @@ OPTIONS:
 EOF
 }
 
-while getopts “hr” OPTION
+while getopts "hrl" OPTION
 do
     case $OPTION in
         h)
@@ -46,6 +46,9 @@ do
             ;;
         r)
             sed -i -e 's/\\u/\\u(remote)/' ./.bashrc
+            run
+            ;;
+        l)
             run
             ;;
         *)

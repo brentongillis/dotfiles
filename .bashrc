@@ -28,5 +28,7 @@ export EDITOR=vim
 export VISUAL=vim
 HISTTIMEFORMAT="%y-%m-%d %T "
 export RUST_SRC_PATH=/usr/src/rust/src
+# needed to compile against the mongodb c driver
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
 PATH="${PATH}:/home/brenton/.bin"
 eval $(dircolors -b)
