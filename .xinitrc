@@ -13,7 +13,6 @@ fi
 
 xrdb -load ~/.Xresources &
 
-
 # exec cinnamon-session
 exec i3
 # exec gnome-session
