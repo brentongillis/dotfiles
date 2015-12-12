@@ -20,9 +20,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
 Plugin 'jnwhiteh/vim-golang'
-Plugin 'wting/rust.vim'
-Plugin 'cespare/vim-toml'
-Plugin 'racer-rust/vim-racer'
 
 filetype plugin indent on
 
@@ -81,23 +78,6 @@ map <silent> <C-l> :wincmd l<CR>
 
 " Default to tree mode in explorer
 let g:netrw_liststyle=3
-
-let g:racer_cmd = "/usr/bin/racer"
-let $RUST_SRC_PATH="/usr/src/rust/src/"
-
-let g:tagbar_type_rust = {
-   \ 'ctagstype' : 'rust',
-   \ 'kinds' : [
-       \'T:types,type definitions',
-       \'f:functions,function definitions',
-       \'g:enum,enumeration names',
-       \'s:structure names',
-       \'m:modules,module names',
-       \'c:consts,static constants',
-       \'t:traits,traits',
-       \'i:impls,trait implementations',
-   \]
-   \}
 
 function! g:NumberToggle()
     if(&rnu == 1)
