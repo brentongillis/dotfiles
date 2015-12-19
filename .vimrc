@@ -16,9 +16,9 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 
 filetype plugin indent on
@@ -30,7 +30,7 @@ set t_Co=256
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-ocean
 
 set list!
 set listchars=tab:>-,trail:·
@@ -54,6 +54,7 @@ let g:formatprg_args_h = "--mode=h --style=ansi -pcHs4"
 
 set pastetoggle=<F2>
 
+set wildignore+=*/node_modules/*
 " Misc stuff that I haven't organized yet
 set tabstop=4
 set softtabstop=4
@@ -69,13 +70,10 @@ set colorcolumn=100
 let g:gitgutter_sign_column_always = 1
 let g:bufferline_echo = 0
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-e> :NERDTreeToggle<CR>
-
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-l> :wincmd l<CR>
-
+map <silent> <C-j> :wincmd j<CR>
+map <silent> <C-k> :wincmd k<CR>
 " Default to tree mode in explorer
 let g:netrw_liststyle=3
 
