@@ -20,6 +20,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 
 filetype plugin indent on
 
@@ -54,7 +56,7 @@ let g:formatprg_args_h = "--mode=h -A3"
 
 set pastetoggle=<F2>
 
-set wildignore+=*/node_modules/*
+set wildignore+=*/node_modules/*,*.o,*/target/*
 " Misc stuff that I haven't organized yet
 set tabstop=4
 set softtabstop=4
