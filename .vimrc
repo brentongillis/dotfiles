@@ -20,14 +20,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
-Plugin 'cespare/vim-toml'
 
 filetype plugin indent on
-
 set hidden
-
-" syntax and color scheme
 set t_Co=256
 syntax enable
 set background=dark
@@ -36,6 +31,10 @@ colorscheme base16-ocean
 
 set list!
 set listchars=tab:>-,trail:·
+function! g:ToggleListChars()
+    set list!
+endfunc
+nnoremap <F5> :call g:ToggleListChars()<cr>
 
 " __tagbar__
 nmap <F8> :TagbarToggle<CR>
@@ -48,36 +47,31 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 " CODE FORMATTING
-" Astyle formatting
 let g:formatprg_c = "astyle"
 let g:formatprg_args_c = "--mode=c -A3"
 let g:formatprg_h = "astyle"
 let g:formatprg_args_h = "--mode=h -A3"
 
 set pastetoggle=<F2>
-
 set wildignore+=*/node_modules/*,*.o,*/target/*
-" Misc stuff that I haven't organized yet
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab " tabs are now spaces
-set number " show number lines
-set cursorline " show current cursor line
-set wildmenu " visual autocomplete menu
-" set statusline=2
+set expandtab
+set number
+set cursorline
+set wildmenu
 set laststatus=2
 set timeoutlen=50
 set colorcolumn=100
 let g:gitgutter_sign_column_always = 1
 let g:bufferline_echo = 0
+let g:netrw_liststyle=3
 
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
-" Default to tree mode in explorer
-let g:netrw_liststyle=3
 
 function! g:NumberToggle()
     if(&rnu == 1)
