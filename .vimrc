@@ -16,10 +16,10 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-bufferline'
 Plugin 'fatih/vim-go'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 filetype plugin indent on
 
@@ -30,7 +30,7 @@ set t_Co=256
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-eighties
+colorscheme base16-ocean
 
 set list!
 set listchars=tab:>-,trail:·
@@ -47,10 +47,11 @@ nnoremap <S-Tab> :bprevious<CR>
 
 " CODE FORMATTING
 " Astyle formatting
-let g:formatprg_c = "astyle"
-let g:formatprg_args_c = "--mode=c --style=ansi -pcHs4"
-let g:formatprg_h = "astyle"
-let g:formatprg_args_h = "--mode=h --style=ansi -pcHs4"
+let g:formatterpath = ["/usr/bin/astyle"]
+let g:formatdef_c = '"--mode=c -A3"'
+let g:formatter_c = ['c']
+let g:formatprg_args_h = '"--mode=h -A3"'
+let g:formatter_h = ['h']
 
 set pastetoggle=<F2>
 
@@ -68,10 +69,6 @@ set timeoutlen=50
 set colorcolumn=100
 let g:gitgutter_sign_column_always = 1
 let g:bufferline_echo = 0
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-e> :NERDTreeToggle<CR>
 
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-l> :wincmd l<CR>
