@@ -9,7 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# set $mod Mod1
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -86,6 +85,12 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+new_window pixel 2
+
+gaps inner 8
+gaps outer 1
+smart_gaps on
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -181,15 +186,16 @@ bindsym $mod+r mode "resize"
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
+set $active-color        #3f4757
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused          $bg-color           $active-color      $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 # client.background       $bg-color
 
@@ -200,6 +206,8 @@ hide_edge_borders both
 bar {
     position bottom
     status_command i3blocks -c ~/.i3/i3blocks.conf
+    mode hide
+    modifier Mod1
     colors {
         background $bg-color
         separator #757575

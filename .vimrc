@@ -10,16 +10,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'chriskempson/base16-vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-bufferline'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'fatih/vim-go'
 
 filetype plugin indent on
 set hidden
@@ -43,6 +40,7 @@ nmap <F8> :TagbarToggle<CR>
 noremap <F3> :Autoformat<CR><CR>
 
 " Buffers
+nnoremap <c-b> :buffers<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
@@ -64,14 +62,24 @@ set wildmenu
 set laststatus=2
 set timeoutlen=50
 set colorcolumn=100
+set incsearch
+set ignorecase
 let g:gitgutter_sign_column_always = 1
-let g:bufferline_echo = 0
 let g:netrw_liststyle=3
 
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
+
+function! g:HLToggle()
+    if(&hlsearch == 1)
+        set nohlsearch
+    else
+        set hlsearch
+    endif
+endfunc
+nnoremap <F6> :call g:HLToggle()<cr>
 
 function! g:NumberToggle()
     if(&rnu == 1)
@@ -86,14 +94,9 @@ let g:lightline = {
             \ 'colorscheme': 'base16_ocean',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive', 'filename' ],
-            \             [ 'bufferline' ] ],
-            \ },
-            \ 'component': {
-            \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before}%#TabLineSel#%{g:bufferline_status_info.current}%#LightLineLeft_active_2#%{g:bufferline_status_info.after}'
+            \             [ 'filename' ] ],
             \ },
             \ 'component_function': {
-            \   'fugitive': 'MyFugitive',
             \   'readonly': 'MyReadonly',
             \   'modified': 'MyModified',
             \   'filename': 'MyFilename',
@@ -122,47 +125,11 @@ function! MyReadonly()
     endif
 endfunction
 
-function! MyFugitive()
-    if exists("*fugitive#head")
-        let _ = fugitive#head()
-        return strlen(_) ? '^ '._ : ''
-    endif
-    return ''
-endfunction
-
 function! MyFilename()
     return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
                 \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
                 \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
 
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -202,7 +169,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -229,11 +196,3 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
     set conceallevel=2 concealcursor=niv
 endif
-
-" Go related mappings
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>r <Plug>(go-run)
-au FileType go nmap <Leader>b <Plug>(go-build)
-au FileType go nmap <Leader>t <Plug>(go-test)
-au FileType go nmap gd <Plug>(go-def-tab)
