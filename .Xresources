@@ -12,9 +12,9 @@ URxvt.keysym.F11:           perl:fullscreen:switch
 !! Appearance
 urxvt.termName: rxvt-unicode
 urxvt.scrollBar: false
-!! urxvt.background: #2d2d2d
 urxvt.background: #2b303b
-!! urxvt.foreground: #E8FFFD
+!!urxvt.background: #2f343f
+urxvt.foreground: #E8FFFD
 
 !! Adjust Rxvt to suit your terminal emulator
 !! *color0: #393939

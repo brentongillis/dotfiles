@@ -45,10 +45,12 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 " CODE FORMATTING
-let g:formatprg_c = "astyle"
-let g:formatprg_args_c = "--mode=c -A3"
-let g:formatprg_h = "astyle"
-let g:formatprg_args_h = "--mode=h -A3"
+" Astyle formatting
+let g:formatterpath = ["/usr/bin/astyle"]
+let g:formatdef_c = '"--mode=c -A3"'
+let g:formatter_c = ['c']
+let g:formatprg_args_h = '"--mode=h -A3"'
+let g:formatter_h = ['h']
 
 set pastetoggle=<F2>
 set wildignore+=*/node_modules/*,*.o,*/target/*
