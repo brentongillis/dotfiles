@@ -97,8 +97,8 @@ smart_gaps on
 
 # default terminals
 set $workspace1 "1: "
-# firefox
-set $workspace2 "2: "
+# globe
+set $workspace2 "2: "
 # sublime
 set $workspace3 "3: "
 # robomongo
@@ -107,12 +107,9 @@ set $workspace4 "4: "
 set $workspace5 "5: "
 # inkscape
 set $workspace6 "6: "
-# Libreoffice Calc
-set $workspace7 "7: "
-# Libreoffice Writer
-set $workspace8 "8: "
-# Libreoffice Draw
-set $workspace9 "9: "
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
 # music
 set $workspace10 "10: "
 
@@ -141,13 +138,11 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 assign [class="Firefox"] $workspace2
+assign [class="chromium"] $workspace2
 assign [class="Subl3"] $workspace3
 assign [class="robomongo"] $workspace4
 assign [class="Gimp"] $workspace5
 assign [class="Inkscape"] $workspace6
-assign [class="libreoffice-calc"] $workspace7
-assign [class="libreoffice-writer"] $workspace8
-assign [class="libreoffice-draw"] $workspace9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -193,10 +188,10 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $active-color      $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.focused          $bg-color           $active-color      $text-color          $bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 client.background       $bg-color
 
 hide_edge_borders both
@@ -204,10 +199,10 @@ hide_edge_borders both
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    position bottom
+    position top
     status_command i3blocks -c ~/.i3/i3blocks.conf
-    mode hide
-    modifier Mod1
+    #mode hide
+    #modifier Mod1
     colors {
         background $bg-color
         separator #757575
@@ -236,12 +231,12 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 430 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Liberation Sans 18"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Liberation Sans 18"
 
-exec compton -f
-exec_always feh --bg-scale /home/brenton/Pictures/gnu_linux_wallpaper.png
+# exec compton -f
+exec_always feh --bg-scale /home/brenton/Pictures/shuttle_flat.jpg
 
 # exec_always xrandr --output DVI-D-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --off --output DVI-I-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
 
 # Office
-exec_always xrandr --output VGA-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-0 --off --output HDMI-0 --off
+# exec_always xrandr --output VGA-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-0 --off --output HDMI-0 --off

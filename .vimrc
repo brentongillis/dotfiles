@@ -17,6 +17,9 @@ Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mustache/vim-mustache-handlebars'
 
 filetype plugin indent on
 set hidden
@@ -24,7 +27,7 @@ set t_Co=256
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme base16-default
 
 set list!
 set listchars=tab:>-,trail:·
@@ -53,7 +56,7 @@ let g:formatprg_args_h = '"--mode=h -A3"'
 let g:formatter_h = ['h']
 
 set pastetoggle=<F2>
-set wildignore+=*/node_modules/*,*.o,*/target/*
+set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -96,9 +99,10 @@ let g:lightline = {
             \ 'colorscheme': 'base16_ocean',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'filename' ] ],
+            \             [ 'fugitive', 'filename' ] ],
             \ },
             \ 'component_function': {
+            \   'fugitive': 'MyFugitive',
             \   'readonly': 'MyReadonly',
             \   'modified': 'MyModified',
             \   'filename': 'MyFilename',
@@ -127,6 +131,14 @@ function! MyReadonly()
     endif
 endfunction
 
+function! MyFugitive()
+    if exists("*fugitive#head")
+        let _ = fugitive#head()
+        return strlen(_) ? '^ '._ : ''
+    endif
+    return ''
+endfunction
+
 function! MyFilename()
     return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
                 \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
@@ -138,6 +150,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets'
 let g:neocomplete#sources#dictionary#dictionaries = {
             \ 'default' : '',
             \ 'vimshell' : $HOME.'/.vimshell_hist',

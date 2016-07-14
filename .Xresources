@@ -37,4 +37,4 @@ urxvt.foreground: #E8FFFD
 !! Font preferenes
 urxvt.font: xft:Liberation Mono:size=11
 urxvt.boldFont: xft:Liberation Mono:size=11:weight=bold
-!!urxvt.letterSpace: -1
+urxvt.letterSpace: -1

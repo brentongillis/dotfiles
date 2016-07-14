@@ -11,3 +11,4 @@ xrdb -load ~/.Xresources &
 setxkbmap -option caps:escape
 
 exec i3
+#exec startxfce4

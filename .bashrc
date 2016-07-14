@@ -30,6 +30,6 @@ HISTTIMEFORMAT="%y-%m-%d %T "
 
 # needed to compile against the mongodb c driver
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/lib/pkgconfig"
-export GOPATH=/home/brenton/GitHub/bestech/go
-PATH="${PATH}:/home/brenton/.bin"
+export GOPATH=/home/brenton/go-lang
+PATH="${PATH}:/home/brenton/.bin:${GOPATH}/bin"
 eval $(dircolors -b)
