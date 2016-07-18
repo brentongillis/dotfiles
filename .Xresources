@@ -1,16 +1,10 @@
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,fullscreen
+URxvt.perl-ext-common:      default,clipboard
 URxvt.iso14755: False
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.url-select.launcher:  firefox
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
-URxvt.keysym.F11:           perl:fullscreen:switch
 
 !! Appearance
-urxvt.termName: rxvt-unicode
+!!urxvt.termName: rxvt-256color
 urxvt.scrollBar: false
 urxvt.background: #2b303b
 !!urxvt.background: #2f343f

@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-BASE16_SHELL="$HOME/.config/base16-shell/base16-ocean.dark.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-ocean.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 alias ls='ls --color=auto'
@@ -14,7 +14,7 @@ alias newest='ls -1t | head -1'
 alias oldest='ls -1t | tail -1'
 alias red='redshift -l 30.6:-87.0 -t 5700:4400 -g 0.8 -m vidmode &'
 alias redDead='killall redshift'
-alias bye='sudo shutdown now'
+alias bye='sudo shutdown now -h'
 alias clc='printf "\033c"'
 alias cdc='cd && clc'
 alias m='mocp'
