@@ -1,3 +1,5 @@
+# i3 config file
+
 set $mod Mod4
 font pango:Liberation Mono 10
 floating_modifier $mod
@@ -41,16 +43,27 @@ bindsym $mod+a focus parent
 
 new_window pixel 2
 
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7"
-set $workspace8 "8"
-set $workspace9 "9"
-set $workspace10 "10"
+set $workspace1 "001"
+set $workspace2 "010"
+set $workspace3 "011"
+set $workspace4 "100"
+set $workspace5 "101"
+set $workspace6 "110"
+set $workspace7 "111"
+set $workspace8 "1000"
+set $workspace9 "1001"
+set $workspace10 "1010"
+
+#set $workspace1 "1: "
+#set $workspace2 "2: "
+#set $workspace3 "3: "
+#set $workspace4 "4"
+#set $workspace5 "5"
+#set $workspace6 "6"
+#set $workspace7 "7"
+#set $workspace8 "8"
+#set $workspace9 "9"
+#set $workspace10 "10"
 
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2

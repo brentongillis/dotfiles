@@ -25,7 +25,7 @@ filetype plugin indent on
 set hidden
 set t_Co=256
 syntax enable
-set background=dark
+set background=light
 let base16colorspace=256
 colorscheme base16-ocean
 
