@@ -29,7 +29,7 @@ set background=light
 let base16colorspace=256
 colorscheme base16-ocean
 
-set list!
+"set list!
 set listchars=tab:>-,trail:·
 function! g:ToggleListChars()
     set list!
@@ -50,10 +50,12 @@ nnoremap <S-Tab> :bprevious<CR>
 " CODE FORMATTING
 " Astyle formatting
 let g:formatterpath = ["/usr/bin/astyle"]
-let g:formatdef_c = '"--mode=c -A3"'
+"let g:formatdef_c = '"--mode=c -A3"'
 let g:formatter_c = ['c']
-let g:formatprg_args_h = '"--mode=h -A3"'
+"let g:formatprg_args_h = '"--mode=h -A3"'
 let g:formatter_h = ['h']
+
+autocmd BufRead,BufNewFile *.h set filetype=c
 
 set pastetoggle=<F2>
 set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*
@@ -179,8 +181,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
