@@ -34,11 +34,6 @@ export GOPATH=/home/brenton/go-lang
 PATH=$PATH:/home/brenton/.bin:$GOPATH/bin
 eval $(dircolors -b)
 
-# needed until gentoo updates portage tree with go 1.7
-export GOROOT=$HOME/go
-export PATH=$PATH:$GOROOT/bin
-# needed until gentoo updates portage tree with go 1.7
-
 man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
