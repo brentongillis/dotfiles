@@ -8,6 +8,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+q kill
 
+
+# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Liberation Sans 18"
 bindsym $mod+d exec dmenu_run
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -89,6 +91,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 assign [class="Firefox"] $workspace2
 assign [class="chromium"] $workspace2
+assign [class="robomongo"] $workspace3
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -107,7 +110,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+shift+x exec i3lock --color "$bg-color"
+bindsym $mod+shift+x exec i3lock -i /home/brenton/Pictures/shuttle_flat.png --color "$bg-color"
 
 bindsym $mod+r mode "resize"
 
@@ -141,5 +144,22 @@ bar {
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
+
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- #decrease sound volume
+bindsym XF86AudioMute exec amixer -q sset Master toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec brightness -i1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightness -d1 # decrease screen brightness
+
+# Touchpad controls
+# bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+#bindsym XF86AudioPlay exec cmus-remote -u
+bindsym XF86AudioPause exec cmus-remote -u
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
 
 exec_always feh --bg-scale /home/brenton/Pictures/shuttle_flat.jpg

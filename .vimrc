@@ -20,6 +20,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/html5.vim'
 
 filetype plugin indent on
 set hidden
@@ -58,7 +60,7 @@ let g:formatter_h = ['h']
 autocmd BufRead,BufNewFile *.h set filetype=c
 
 set pastetoggle=<F2>
-set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*
+set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*,*/vendor/*,*/build/*
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
