@@ -22,12 +22,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
+Plugin 'briancollins/vim-jst'
+Plugin 'leafgarland/typescript-vim'
 
 filetype plugin indent on
 set hidden
 set t_Co=256
 syntax enable
-set background=light
+set background=dark
 let base16colorspace=256
 colorscheme base16-ocean
 
@@ -186,7 +188,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags sw=2 ts=2 sts=2
+autocmd FileType gohtmltmpl,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags sw=2 ts=2 sts=2
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags

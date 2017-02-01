@@ -12,4 +12,4 @@ install:
 	sudo chown root:root brightness
 	sudo chmod u+s brightness
 	rm ~/.bin/brightness
-	ln -s ~/GitHub/dotfiles/src/brightness ~/.bin/brightness
+	ln -s ~/GitHub/brentongillis/dotfiles/src/brightness ~/.bin/brightness
