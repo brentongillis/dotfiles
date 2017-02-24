@@ -24,6 +24,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'briancollins/vim-jst'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'easymotion/vim-easymotion'
 
 filetype plugin indent on
 set hidden
@@ -32,6 +34,8 @@ syntax enable
 set background=dark
 let base16colorspace=256
 colorscheme base16-ocean
+
+let mapleader = "-"
 
 "set list!
 set listchars=tab:>-,trail:·

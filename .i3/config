@@ -10,7 +10,8 @@ bindsym $mod+Shift+q kill
 
 
 # bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Liberation Sans 18"
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run -lines 7 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -font "Liberation Sans 18"
+# bindsym $mod+d exec dmenu_run
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -45,27 +46,16 @@ bindsym $mod+a focus parent
 
 new_window pixel 2
 
-set $workspace1 "001"
-set $workspace2 "010"
-set $workspace3 "011"
-set $workspace4 "100"
-set $workspace5 "101"
-set $workspace6 "110"
-set $workspace7 "111"
-set $workspace8 "1000"
-set $workspace9 "1001"
-set $workspace10 "1010"
-
-#set $workspace1 "1: "
-#set $workspace2 "2: "
-#set $workspace3 "3: "
-#set $workspace4 "4"
-#set $workspace5 "5"
-#set $workspace6 "6"
-#set $workspace7 "7"
-#set $workspace8 "8"
-#set $workspace9 "9"
-#set $workspace10 "10"
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -89,9 +79,9 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-assign [class="Firefox"] $workspace2
-assign [class="chromium"] $workspace2
-assign [class="robomongo"] $workspace3
+#assign [class="Firefox"] $workspace2
+#assign [class="chromium"] $workspace2
+#assign [class="robomongo"] $workspace3
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
