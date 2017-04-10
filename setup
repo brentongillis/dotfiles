@@ -1,58 +1,86 @@
 #!/bin/bash
-# Create symlinks
 
-run()
-{
-    read -p "This will overwrite the dotfiles. Continue? <y/N> " prompt
-
-    if [[ $prompt =~ [yY](es)* ]]; then
-
-        things=(.vimrc .tmux .tmux.conf .bashrc)
-        pwd=$(pwd)
-
-        if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
-            git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-        fi
-        for item in ${things[*]}; do
-            if [ -f ~/$item ] || [ -d ~/$item ]; then
-                rm -rf ~/$item
-            fi
-            ln -s $pwd/$item ~
-        done
-    else
-        echo Exiting
-    fi
-}
-
-usage()
-{
+usage() {
 cat << EOF
 usage: $0 options
 
 This setup script will create symlinks to all dotfiles contained in this repo.
 
 OPTIONS:
-   -h      Show this message
-   -r      Specifies remote setup
+   -h --help      Show this message
+   -r --remote    Specifies remote setup
+   -p --pretend   Only print what would happen
 EOF
 }
 
-while getopts "hrl" OPTION
-do
-    case $OPTION in
-        h)
+getopt --test # not output and should return error 4. See manual page for more info
+if [[ $? -ne 4 ]]; then
+    echo "getopt is old and busted"
+    exit 1
+fi
+
+CFG_PRETEND=false
+
+SHORT=hrp
+LONG=help,remote,pretend
+
+PARSED=$(getopt --options $SHORT --longoptions $LONG --name "$0" -- "$@")
+if [[ $? -ne 0 ]]; then exit 2; fi
+eval set -- "$PARSED"
+
+while true; do
+    case $1 in
+        -h|--help)
             usage
             exit 1
             ;;
-        r)
-            sed -i -e 's/\\u/\\u(remote)/' ./.bashrc
-            run
+        -r|--remote)
+            #sed -i -e 's/\\u/\\u(remote)/' ./.bashrc
+            shift
             ;;
-        l)
-            run
+        -p|--pretend)
+            CFG_PRETEND=true
+            shift
+            ;;
+        --)
+            shift
+            break
             ;;
         *)
-            run
+            echo "Error! Undefined argument $1"
+            exit 2
             ;;
     esac
 done
+
+if [[ $CFG_PRETEND == false ]]; then
+    echo -e "\033[0;31mPretend is not set! Be careful!\033[0m"
+fi
+read -p "This will overwrite existing dotfiles and replace with symlinks. Continue? <y/N> " prompt
+
+if [[ $prompt =~ [yY](es)* ]]; then
+
+    things=(.vimrc .tmux .tmux.conf .bashrc .Xresources .xinitrc .i3 .i3status.conf)
+    pwd=$(pwd)
+
+    if [[ $CFG_PRETEND == false ]]; then
+        if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
+        git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+        fi
+    else 
+        echo "Checking for Vundle and setting up if needed."
+    fi
+    for item in ${things[*]}; do
+        if [[ $CFG_PRETEND == false ]]; then
+            echo "huh"
+            #if [ -f ~/$item ] || [ -d ~/$item ]; then
+            #    rm -rf ~/$item
+            #fi
+            #ln -s $pwd/$item ~
+        else
+            echo $item
+        fi
+    done
+else
+    echo Exiting
+fi

@@ -1,2 +1,5 @@
 update_locals
-**/brightness
+**/bright
+**/notify
+*.swp
+*.swo

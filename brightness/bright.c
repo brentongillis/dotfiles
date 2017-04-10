@@ -7,21 +7,7 @@
  * One should change the binaries owner to root and then set the uid bit.
  * chmod u+s brightness
  *
- * The build script will actually attempt this change (sudo required).
- * Copyright (C) 2016 Brenton Gillis
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (C) 2017 Brenton Gillis
  */
 
 #include <stdlib.h>
@@ -30,7 +16,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-#define VERSION "1.0.0"
+#define VERSION "1.0.1"
 #define MAX_BRIGHTNESS "/sys/class/backlight/intel_backlight/max_brightness"
 #define BRIGHTNESS "/sys/class/backlight/intel_backlight/brightness"
 #define TRUE 1
@@ -55,10 +41,7 @@ static const struct option long_options[] = {
 	{0, 0, 0, 0}
 };
 
-static const char* VERSION_MSG = "Copyright (C) 2016 Brenton Gillis\n" \
-                                 "This program comes with ABSOLUTELY NO WARRANTY.\n" \
-                                 "This is free software, and you are welcome to redistribute it\n" \
-                                 "under certain conditions. For details see LICENSE\n";
+static const char* VERSION_MSG = "Copyright (C) 2017 Brenton Gillis\n";
 
 typedef struct {
 	long inc;
@@ -99,7 +82,7 @@ int main(int argc, char* argv[])
 	} else if (argp.set > 0) {
 		new = argp.set;
 	} else {
-		printf("%d out of %d\n", old, max);
+		printf("%d of %d\n", old, max);
 		exit(EXIT_SUCCESS);
 	}
 
@@ -111,7 +94,7 @@ int main(int argc, char* argv[])
 		}
 	} else {
 		if (argp.verbose == TRUE) {
-			fprintf(stderr, "Error! Attempted to set brightness out of bounds\n");
+			fprintf(stderr, "Error! Attempted to set brightness out of bounds.\n");
 		}
 
 		exit(EXIT_FAILURE);
@@ -120,9 +103,6 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-/**
- * Does exactly what you think it would do
- */
 static void parse_args(int argc, char* argv[])
 {
 	int opt;
@@ -168,15 +148,12 @@ static void parse_args(int argc, char* argv[])
 	return;
 }
 
-/**
- * Print out usage information
- */
 static void usage(char* prog_name)
 {
 	printf("\n%s\n"
 	       "\n"
 	       "NOTE: If specifying, incrementing, or decrementing the brightness past\n"
-	       "past 0 and the max_brightness display setting, the program exits\n"
+	       "past 0 and the max_brightness display setting, the program exits.\n"
 	       "\n"
 	       "\tUsage: %s [options]\n\n"
 	       "\tOptions:\n"
@@ -234,9 +211,6 @@ static void check_exclusivity(void)
 	}
 }
 
-/**
- * Reads in the value from either the max_brightness or brightness files defined above
- */
 static int read_brightness(char* filename)
 {
 	char* buff = NULL;
@@ -266,9 +240,6 @@ static int read_brightness(char* filename)
 	return -1;
 }
 
-/**
- * Write the new brightness value to the sys file
- */
 static void write_brightness(char* filename, int value)
 {
 	FILE* file = fopen(filename, "w");

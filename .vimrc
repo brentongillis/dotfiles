@@ -1,11 +1,9 @@
-" ~/.vimrc
 set encoding=utf-8
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
-" Vundle Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'itchyny/lightline.vim'
@@ -19,13 +17,11 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
-Plugin 'briancollins/vim-jst'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'mattn/emmet-vim'
 Plugin 'easymotion/vim-easymotion'
+
+let mapleader = "-"
 
 filetype plugin indent on
 set hidden
@@ -33,9 +29,9 @@ set t_Co=256
 syntax enable
 set background=dark
 let base16colorspace=256
-colorscheme base16-ocean
+colorscheme base16-google-dark
 
-let mapleader = "-"
+set mouse=a
 
 "set list!
 set listchars=tab:>-,trail:·
@@ -47,21 +43,20 @@ nnoremap <F5> :call g:ToggleListChars()<cr>
 " __tagbar__
 nmap <F8> :TagbarToggle<CR>
 
-" F3 to autoformat C uses astyle
-noremap <F3> :Autoformat<CR><CR>
-
 " Buffers
 nnoremap <c-b> :buffers<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 " CODE FORMATTING
+" F3 to autoformat C uses astyle
+noremap <F3> :Autoformat<CR><CR>
 " Astyle formatting
 let g:formatterpath = ["/usr/bin/astyle"]
-"let g:formatdef_c = '"--mode=c -A3"'
 let g:formatter_c = ['c']
-"let g:formatprg_args_h = '"--mode=h -A3"'
 let g:formatter_h = ['h']
+"let g:formatdef_c = '"--mode=c -A3"'
+"let g:formatprg_args_h = '"--mode=h -A3"'
 
 autocmd BufRead,BufNewFile *.h set filetype=c
 
@@ -75,7 +70,6 @@ set number
 set cursorline
 set wildmenu
 set laststatus=2
-set timeoutlen=50
 set colorcolumn=100
 set incsearch
 set ignorecase
@@ -100,8 +94,7 @@ function! g:NumberToggle()
     if(&rnu == 1)
         set nornu
     else
-        set rnu
-    endif
+        set rnu endif
 endfunc
 nnoremap <F4> :call g:NumberToggle()<cr>
 
@@ -161,11 +154,14 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets'
+let g:neosnippet#enable_snipmate_compatibility=1
 let g:neocomplete#sources#dictionary#dictionaries = {
             \ 'default' : '',
             \ 'vimshell' : $HOME.'/.vimshell_hist',
             \ 'scheme' : $HOME.'/.gosh_completions'
             \ }
+
+let g:go_snippet_engine = "neosnippet"
 
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
@@ -219,3 +215,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
     set conceallevel=2 concealcursor=niv
 endif
+
+" Turn on all go syntax deals
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

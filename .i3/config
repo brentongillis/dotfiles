@@ -140,8 +140,8 @@ bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- #decrease sound volu
 bindsym XF86AudioMute exec amixer -q sset Master toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightness -i1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightness -d1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec bright -i1 # increase screen brightness
+bindsym XF86MonBrightnessDown exec bright -d1 # decrease screen brightness
 
 # Touchpad controls
 # bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -152,4 +152,5 @@ bindsym XF86AudioPause exec cmus-remote -u
 bindsym XF86AudioNext exec cmus-remote -n
 bindsym XF86AudioPrev exec cmus-remote -r
 
-exec_always feh --bg-scale /home/brenton/Pictures/shuttle_flat.jpg
+#exec_always feh --bg-scale /home/brenton/Pictures/shuttle_flat.jpg
+exec_always feh --bg-fill /home/brenton/Pictures/wedding/01\ \ PREVIEWS/01\ \ PREVIEWS-0043.jpg

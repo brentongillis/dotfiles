@@ -6,7 +6,10 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 !! Appearance
 !!urxvt.termName: rxvt-256color
 urxvt.scrollBar: false
-urxvt.background: #2b303b
+!!base16 googledark
+urxvt.background: #1D1F21
+!!base16-ocean
+!!urxvt.background: #2b303b
 urxvt.foreground: #E8FFFD
 
 !! Font preferenes
