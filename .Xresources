@@ -1,4 +1,4 @@
-URxvt.perl-ext-common:      default,clipboard
+URxvt.perl-ext-common: default,clipboard
 URxvt.iso14755: False
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
@@ -17,9 +17,15 @@ urxvt.font: xft:Liberation Mono:size=12
 urxvt.boldFont: xft:Liberation Mono:size=12:weight=bold
 urxvt.letterSpace: -1
 
-! ------------------------------------------------------------------------------
+Xft.dpi:        96
+Xft.antialias:  1
+Xft.autohint:   1
+Xft.hinting:    1
+Xft.hintstyle:  hintslight
+Xft.lcdfilter:  lcdlight
+Xft.rgba:       rgb
+
 ! ROFI Color theme
-! ------------------------------------------------------------------------------
 rofi.color-enabled: true
 rofi.color-window: #2b303b, #002b36, #343d46
 rofi.color-normal: #2b303b, #c0c5ce, #2b303b, #4f5b66, #dfe1e8

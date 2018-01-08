@@ -100,7 +100,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+shift+x exec i3lock -i /home/brenton/Pictures/shuttle_flat.png --color "$bg-color"
+bindsym $mod+shift+x exec i3lock -i /home/brenton/pictures/wallpaper/shuttle_flat.png --color "$bg-color"
 
 bindsym $mod+r mode "resize"
 
@@ -133,6 +133,7 @@ bar {
         inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
         urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
+    tray_output primary
 }
 
 bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ #increase sound volume
@@ -152,5 +153,4 @@ bindsym XF86AudioPause exec cmus-remote -u
 bindsym XF86AudioNext exec cmus-remote -n
 bindsym XF86AudioPrev exec cmus-remote -r
 
-#exec_always feh --bg-scale /home/brenton/Pictures/shuttle_flat.jpg
-exec_always feh --bg-fill /home/brenton/Pictures/wedding/01\ \ PREVIEWS/01\ \ PREVIEWS-0043.jpg
+exec_always feh --bg-scale /home/brenton/pictures/wallpaper/shuttle_flat.png

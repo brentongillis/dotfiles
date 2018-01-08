@@ -1,0 +1,3 @@
+# 2i2
+defaults.pcm.!card USB
+defaults.pcm.!device 0
