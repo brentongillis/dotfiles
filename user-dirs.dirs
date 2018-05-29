@@ -1,0 +1,8 @@
+XDG_DESKTOP_DIR="/home/brenton/"
+XDG_DOWNLOAD_DIR="/home/brenton/downloads"
+XDG_TEMPLATES_DIR="/home/brenton/"
+XDG_PUBLICSHARE_DIR="/home/brenton/shared/"
+XDG_DOCUMENTS_DIR="/home/brenton/documents"
+XDG_MUSIC_DIR="/home/brenton/music"
+XDG_PICTURES_DIR="/home/brenton/pictures"
+XDG_VIDEOS_DIR="/home/brenton/videos"

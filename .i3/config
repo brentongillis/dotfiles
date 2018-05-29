@@ -5,13 +5,13 @@ font pango:Liberation Mono 10
 floating_modifier $mod
 
 bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec st
 
 bindsym $mod+Shift+q kill
 
-
-# bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Liberation Sans 18"
-bindsym $mod+d exec rofi -show run -lines 7 -eh 2 -width 100 -padding 435 -opacity "85" -bw 0 -font "Liberation Sans 18"
+bindsym $mod+d exec rofi -show run -lines 7 -eh 2 -width 40 -opacity "85" -bw 2 -font "Liberation Sans 18"
 # bindsym $mod+d exec dmenu_run
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -80,8 +80,6 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 #assign [class="Firefox"] $workspace2
-#assign [class="chromium"] $workspace2
-#assign [class="robomongo"] $workspace3
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -154,3 +152,4 @@ bindsym XF86AudioNext exec cmus-remote -n
 bindsym XF86AudioPrev exec cmus-remote -r
 
 exec_always feh --bg-scale /home/brenton/pictures/wallpaper/shuttle_flat.png
+# exec_always feh --bg-scale /home/brenton/pictures/i_want_to_be_here.jpg

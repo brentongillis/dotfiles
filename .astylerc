@@ -4,8 +4,7 @@
 
 --style=kr
 
---indent=tab=4
-#--indent=force-tab=4
+--indent=force-tab=4
 
 --indent-labels
 
@@ -14,7 +13,7 @@
 --pad-header
 --pad-comma
 --unpad-paren
-# --delete-empty-lines
+--delete-empty-lines
 
 --align-pointer=name
 --align-reference=name
@@ -22,4 +21,3 @@
 --add-brackets
 
 --max-code-length=100
-#--break-after-logical
