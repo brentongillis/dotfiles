@@ -1,0 +1,14 @@
+diff --git a/declcache.go b/declcache.go
+index 215a5a8..40b7978 100644
+--- a/declcache.go
++++ b/declcache.go
+@@ -219,6 +219,9 @@ func autobuild(p *build.Package) error {
+ // correctly, the newly compiled package should then be in the usual place in the `$GOPATH/pkg`
+ // directory, and gocode will pick it up from there.
+ func build_package(p *build.Package) error {
++	if strings.Contains(p.PkgObj, "/usr/lib64/go/pkg/linux_amd64") {
++		return nil
++	}
+ 	if *g_debug {
+ 		log.Printf("-------------------")
+ 		log.Printf("rebuilding package %s", p.Name)

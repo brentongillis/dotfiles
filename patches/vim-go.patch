@@ -1,0 +1,33 @@
+diff --git a/syntax/go.vim b/syntax/go.vim
+index 31fe961..64da91a 100644
+--- a/syntax/go.vim
++++ b/syntax/go.vim
+@@ -378,12 +378,13 @@ else
+   syn keyword goDeclaration func
+ endif
+ hi def link     goFunction          Function
++hi def link     goFunctionCall      Function
+ 
+ " Function calls;
+ if g:go_highlight_function_calls != 0
+   syn match goFunctionCall      /\w\+\ze(/ contains=goBuiltins,goDeclaration
+ endif
+-hi def link     goFunctionCall      Type
++hi def link     goMethodCall        Function
+ 
+ " Fields;
+ if g:go_highlight_fields != 0
+diff --git a/templates/hello_world.go b/templates/hello_world.go
+index 50e8d8d..54b13b9 100644
+--- a/templates/hello_world.go
++++ b/templates/hello_world.go
+@@ -1,6 +1,8 @@
+ package main
+ 
+-import "fmt"
++import (
++	"fmt"
++)
+ 
+ func main() {
+ 	fmt.Println("vim-go")
