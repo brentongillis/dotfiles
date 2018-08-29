@@ -1,5 +1,5 @@
 #!/bin/sh
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb -load ~/.Xresources
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 setxkbmap -option caps:escape

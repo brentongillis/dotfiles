@@ -4,13 +4,13 @@
 [[ $- != *i* ]] && return
 
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-eighties.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-google-dark.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-google-dark.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-google-light.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow-night.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-material.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-material-darker.sh"
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-ocean.sh"
+# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-ocean.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/ocean.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-solarized-light.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
@@ -23,8 +23,10 @@ alias bye='sudo shutdown now -h'
 alias clc='printf "\033c"'
 alias xclip='xclip -sel clipboard'
 alias snooze='sudo s2ram'
-alias cdgo='cd ~/go/src/github.com/'
-alias gkey='pass github/brentongillis | xclip'
+alias gkey='pass vcs/github/brentongillis | xclip'
+alias github='cd ~/go/src/github.com/'
+alias gitlab='cd ~/go/src/gitlab.com/'
+
 
 if [ -f ~/.bash_alias ]; then
     source ~/.bash_alias
@@ -33,6 +35,7 @@ fi
 export PS1='\u \[\e[0;31m\][\[\e[00m\]\W\[\e[0;31m\]]\[\e[00m\] \[\e[0;35m\]>>\[\e[00m\] '
 export EDITOR=vim
 export VISUAL=vim
+export TERMINAL=st
 HISTTIMEFORMAT="%y-%m-%d %T "
 
 # needed to compile against the mongodb c driver
