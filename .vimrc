@@ -5,6 +5,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 call vundle#rc()
 
+" run this function to hotfix base16 themes until the themes are fixed properly
+function FixupBase16(info)
+    !sed -i '/Base16hi/\! s/a:\(attr\|guisp\)/l:\1/g' ~/.vim/bundle/base16-vim/colors/*.vim
+endfunction
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'itchyny/lightline.vim'
@@ -16,18 +21,22 @@ Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-commentary'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'maralla/completor.vim'
+
 Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'racer-rust/vim-racer'
 
+" Plugin 'tpope/vim-surround'
+" Plugin 'leafgarland/typescript-vim'
+" Plugin 'Quramy/tsuquyomi'
+" Plugin 'scrooloose/nerdtree'
 " Plugin 'airblade/vim-gitgutter'
 " Plugin 'valloric/youcompleteme'
 " Plugin 'tpope/vim-fugitive'
-" Plugin 'easymotion/vim-easymotion'
 
+" Plugin 'easymotion/vim-easymotion'
 " let mapleader = "-"
 
 filetype plugin indent on
@@ -44,6 +53,8 @@ function! g:ToggleListChars()
 endfunc
 nnoremap <F5> :call g:ToggleListChars()<cr>
 
+nnoremap <C-e> :Explore<CR>
+" map <C-e> :NERDTreeToggle<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
@@ -56,12 +67,15 @@ let g:formatters_c = ['custom_c']
 " let g:formatter_c = ['c']
 " let g:formatter_h = ['h']
 
+" Enable markup tag matching using %
+runtime macros/matchit.vim
+
 " stop vim-go from opening the preview window on tab completion
 set completeopt-=preview
-" set ttyfast
-" set ttymouse=xterm
-" set ttyscroll=3
-" set mouse=a
+set ttyfast
+set ttymouse=xterm
+set ttyscroll=3
+set mouse=a
 set noerrorbells
 set noswapfile
 set nobackup
@@ -84,8 +98,12 @@ set signcolumn=yes
 set lazyredraw
 let g:netrw_liststyle=3
 
+let g:completor_clang_binary = '/usr/lib/llvm/7/bin/clang'
+let g:completor_node_binary = '/usr/bin/node'
+" let g:completor_tsserver_binary = '/home/brenton/.npm-global/bin/tsserver'
+
 let g:completor_racer_binary = '/home/brenton/.cargo/bin/racer'
-" let g:racer_cmd = '/home/brenton/.cargo/bin/racer'
+let g:racer_cmd = '/home/brenton/.cargo/bin/racer'
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
@@ -100,16 +118,13 @@ map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
 
-" let g:ycm_key_list_select_completion=['<tab>', '<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion=['<s-tab>', '<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-" let g:ycm_server_python_interpreter = '/usr/bin/python2'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-
-let g:completor_clang_binary = '/usr/lib/llvm/6/bin/clang'
 
 autocmd FileType gohtmltmpl,html,xhtml setlocal sw=2 ts=2 sts=2
 autocmd FileType typescript setlocal sw=2 ts=2 sts=2
@@ -118,10 +133,6 @@ autocmd FileType typescript setlocal sw=2 ts=2 sts=2
 "     set conceallevel=2 concealcursor=niv
 " endif
 
-" let g:go_gocode_propose_builtins = 0
-" let g:go_gocode_autobuild = 0
-" let g:go_autodetect_gopath = 1
-" let g:go_list_type = "quickfix"
 let g:go_highlight_function_calls = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1

@@ -2,13 +2,19 @@
 
 --mode=c
 
---style=kr
+# --style=kr
+--style=linux
+--lineend=linux
 
 --indent=force-tab=4
+--indent-preproc-block
+# --indent-labels
 
---indent-labels
+--attach-return-type
+--attach-return-type-decl
 
---break-blocks=all
+# --break-blocks=all
+--break-blocks
 --pad-oper
 --pad-header
 --pad-comma
@@ -21,3 +27,4 @@
 --add-brackets
 
 --max-code-length=100
+--break-after-logical

@@ -32,3 +32,6 @@ rofi.color-window: #2b303b, #343D46, #343d46
 rofi.color-normal: #2b303b, #c0c5ce, #2b303b, #4f5b66, #dfe1e8
 rofi.color-active: #2b303b, #8fa1b3, #2b303b, #8fa1b3, #343d46
 rofi.color-urgent: #2b303b, #bf616a, #2b303b, #bf616a, #dfe1e8
+
+Xcursor.theme: capitaine-cursors
+/* Xcursor.size: 12 */

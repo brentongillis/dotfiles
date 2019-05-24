@@ -2,6 +2,7 @@
 
 set $mod Mod4
 font pango:Liberation Mono 10
+# font pango:Hack 10
 floating_modifier $mod
 
 # bindsym $mod+Return exec i3-sensible-terminal
@@ -44,7 +45,9 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
-new_window pixel 2
+default_border pixel 1
+default_floating_border pixel 1
+hide_edge_borders smart
 
 set $workspace1 "1"
 set $workspace2 "2"
@@ -102,12 +105,22 @@ bindsym $mod+shift+x exec i3lock -i /home/brenton/pictures/wallpaper/shuttle_fla
 
 bindsym $mod+r mode "resize"
 
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $active-color        #3f4757
+# vimix-dark-beryl
+set $bg-color            #2C2E33
+set $inactive-bg-color   #2C2E33
+set $active-color        #235E57
+# set $active-color        #2EB398
 set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $inactive-text-color #5C616C
+set $urgent-bg-color     #bf616a
+
+# Arc
+# set $bg-color            #2f343f
+# set $inactive-bg-color   #2f343f
+# set $active-color        #3f4757
+# set $text-color          #f3f4f5
+# set $inactive-text-color #676E7D
+# set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
@@ -117,9 +130,10 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $bg-color
 client.background       $bg-color
 
-#hide_edge_borders both
-
 bar {
+    # mode hide
+    # hidden_state hide
+    # modifier Mod1
     position top
     status_command i3status
     colors {
@@ -139,8 +153,8 @@ bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- #decrease sound volu
 bindsym XF86AudioMute exec amixer -q sset Master toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec bright -i1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec bright -d1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec bright -i # increase screen brightness
+bindsym XF86MonBrightnessDown exec bright -d # decrease screen brightness
 
 # Touchpad controls
 # bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -149,6 +163,7 @@ bindsym XF86MonBrightnessDown exec bright -d1 # decrease screen brightness
 #bindsym XF86AudioPlay exec cmus-remote -u
 bindsym XF86AudioPause exec cmus-remote -u
 bindsym XF86AudioNext exec cmus-remote -n
+# bindsym XF86AudioStop exec cmus-remote -r
 bindsym XF86AudioPrev exec cmus-remote -r
 
 exec_always feh --bg-scale /home/brenton/pictures/wallpaper/shuttle_flat.png
