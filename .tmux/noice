@@ -1,0 +1,5 @@
+# This tmux statusbar config was created by tmuxline.vim
+# on Fri, 11 Oct 2019
+
+set -g status-style fg=colour8,bg=colour18
+set -g window-status-current-style fg=colour20,bg=colour19

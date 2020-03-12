@@ -6,9 +6,9 @@ set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 call vundle#rc()
 
 " run this function to hotfix base16 themes until the themes are fixed properly
-function FixupBase16(info)
-    !sed -i '/Base16hi/\! s/a:\(attr\|guisp\)/l:\1/g' ~/.vim/bundle/base16-vim/colors/*.vim
-endfunction
+" function FixupBase16(info)
+"     !sed -i '/Base16hi/\! s/a:\(attr\|guisp\)/l:\1/g' ~/.vim/bundle/base16-vim/colors/*.vim
+" endfunction
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Chiel92/vim-autoformat'
@@ -23,21 +23,25 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'maralla/completor.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'rust-lang/rust.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'racer-rust/vim-racer'
 
+Plugin 'idanarye/vim-dutyl'
+
+Plugin 'scrooloose/nerdtree'
+
 " Plugin 'tpope/vim-surround'
 " Plugin 'leafgarland/typescript-vim'
 " Plugin 'Quramy/tsuquyomi'
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'airblade/vim-gitgutter'
 " Plugin 'valloric/youcompleteme'
 " Plugin 'tpope/vim-fugitive'
 
-" Plugin 'easymotion/vim-easymotion'
-" let mapleader = "-"
+Plugin 'easymotion/vim-easymotion'
+let mapleader = "-"
 
 filetype plugin indent on
 set hidden
@@ -53,8 +57,8 @@ function! g:ToggleListChars()
 endfunc
 nnoremap <F5> :call g:ToggleListChars()<cr>
 
-nnoremap <C-e> :Explore<CR>
-" map <C-e> :NERDTreeToggle<CR>
+" nnoremap <C-e> :Explore<CR>
+map <C-e> :NERDTreeToggle<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
@@ -71,7 +75,7 @@ let g:formatters_c = ['custom_c']
 runtime macros/matchit.vim
 
 " stop vim-go from opening the preview window on tab completion
-set completeopt-=preview
+" set completeopt-=preview
 set ttyfast
 set ttymouse=xterm
 set ttyscroll=3
@@ -82,7 +86,7 @@ set nobackup
 set nowritebackup
 set noshowmode
 set pastetoggle=<F2>
-set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*,*/vendor/*,*/build/*,*/bak/*,*/release/*,*/assets/*
+set wildignore+=*/node_modules/*,*.o,*/target/*,*/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*,*/vendor/*,*/build/*,*/bak/*,*/release/*,*/src/assets/*,*/_ignore/*
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -98,16 +102,21 @@ set signcolumn=yes
 set lazyredraw
 let g:netrw_liststyle=3
 
-let g:completor_clang_binary = '/usr/lib/llvm/7/bin/clang'
+let g:completor_clang_binary = '/usr/lib/llvm/9/bin/clang'
 let g:completor_node_binary = '/usr/bin/node'
+let g:completor_python_binary = '/usr/bin/python'
 " let g:completor_tsserver_binary = '/home/brenton/.npm-global/bin/tsserver'
 
 let g:completor_racer_binary = '/home/brenton/.cargo/bin/racer'
 let g:racer_cmd = '/home/brenton/.cargo/bin/racer'
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" au FileType rust nmap gd <Plug>(rust-def)
+" au FileType rust nmap gs <Plug>(rust-def-split)
+" au FileType rust nmap gx <Plug>(rust-def-vertical)
+" au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <silent> <C-]> <Plug>(rust-def)
+au FileType rust nmap <silent> <C-w><C-]> <Plug>(rust-def-vertical)
+au FileType rust nmap <silent> <C-w>} <Plug>(rust-def-split)
+au FileType rust nmap <silent> <C-k> <Plug>(rust-doc)
 let g:rustfmt_autosave = 1
 
 autocmd BufRead,BufNewFile *.h set filetype=c
@@ -141,6 +150,8 @@ let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 function! g:HLToggle()
     if(&hlsearch == 1)

@@ -7,7 +7,7 @@
  * using plain bash. One should change the binaries owner to root and then set the uid bit.
  * chmod u+s brightness
  *
- * Copyright (C) 2017 Brenton Gillis
+ * Copyright (C) 2020 Brenton Gillis
  */
 
 #include <stdlib.h>
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-#define VERSION "1.0.1"
+#define VERSION "1.1.0"
 #define MAX_BRIGHTNESS "/sys/class/backlight/intel_backlight/max_brightness"
 #define BRIGHTNESS "/sys/class/backlight/intel_backlight/brightness"
 #define TRUE 1
@@ -31,27 +31,29 @@ static int read_initial_brightness(int *max, int *old);
 static int read_brightness(char *filename);
 static void write_brightness(char *filename, int value);
 
-static const char *opt_string = "hvs:idV?";
+static const char *opt_string = "hvs:idoV?";
 static const struct option long_options[] = {
-	{"help", no_argument, 0, 'h'},
-	{"version", no_argument, 0, 'v'},
-	{"set", required_argument, 0, 's'},
-	{"inc", no_argument, 0, 'i'},
-	{"dec", no_argument, 0, 'd'},
-	{"verbose", no_argument, 0, 'V'},
+	{"help",	no_argument,		0, 'h'},
+	{"version",	no_argument,		0, 'v'},
+	{"set",	required_argument,		0, 's'},
+	{"inc",		no_argument,		0, 'i'},
+	{"dec",		no_argument,		0, 'd'},
+	{"off",		no_argument,		0, 'o'},
+	{"verbose", no_argument,		0, 'V'},
 	{0, 0, 0, 0}
 };
 
-static const char *VERSION_MSG = "Copyright (C) 2017 Brenton Gillis\n";
+static const char *VERSION_MSG = "Copyright (C) 2020 Brenton Gillis\n";
 
 typedef struct {
 	int set;
 	int inc;
 	int dec;
+	int off;
 	int verbose;
 } arguments;
 
-static arguments argp = {-1, FALSE, FALSE, FALSE};
+static arguments argp = {-1, FALSE, FALSE, FALSE, FALSE};
 
 int main(int argc, char *argv[])
 {
@@ -87,6 +89,8 @@ int main(int argc, char *argv[])
 		} else {
 			fprintf(stderr, "Desired brightness '%d' exceeds max/min brightness! Exiting.\n", argp.set);
 		}
+	} else if (argp.off == TRUE) {
+		new = 0;
 	} else {
 		printf("%d of %d\n", old, max);
 		exit(EXIT_SUCCESS);
@@ -132,6 +136,10 @@ static void parse_args(int argc, char *argv[])
 			m++;
 			break;
 
+		case 'o':
+			argp.off = TRUE;
+			break;
+
 		case 'V':
 			argp.verbose = TRUE;
 			break;
@@ -165,6 +173,7 @@ static void usage(char *prog_name)
 		   "\t  -s, --set         Set brightness to specified value\n"
 		   "\t  -i, --inc         Increment by value\n"
 		   "\t  -d, --dec         Decrement by value\n"
+		   "\t  -o, --off         Turn off display by setting brightness to zero\n"
 		   "\t  -S, --verbose     Verbose all output (Useful when called from i3 bindings)\n"
 		   "\t\n", VERSION_MSG, prog_name);
 	exit(EXIT_SUCCESS);
