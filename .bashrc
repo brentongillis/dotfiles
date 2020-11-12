@@ -6,17 +6,8 @@
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-eighties.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-google-dark.sh"
 # BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-ocean.sh"
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-solarized-light.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-seti.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-brewer.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-onedark.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-google-light.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-solarized.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow-night.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-material.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-material-darker.sh"
-# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-oceanicnext.sh"
+# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-solarized-light.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-solarized-dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 alias ls='ls --color=auto'
@@ -30,6 +21,17 @@ alias snooze='sudo s2ram'
 alias gkey='pass vcs/github/brentongillis | xclip'
 alias ff='firefox --new-tab'
 alias fuckcapslock='setxkbmap -option caps:escape'
+alias ..='cd ..'
+alias foxdie='killall /usr/lib64/firefox/firefox'
+
+# funcs
+function cdl() {
+    cd "$1" && shift && ls "$@"
+}
+
+function cdls() {
+    ( cd "$1" && shift && ls "$@" )
+}
 
 # use vi mode instead of emacs default. See ~/.inputrc for settings
 # set -o vi
@@ -43,6 +45,7 @@ export PS1='\u \[\e[0;31m\][\[\e[00m\]\W\[\e[0;31m\]]\[\e[00m\] \[\e[0;35m\]>>\[
 export EDITOR=vim
 export VISUAL=vim
 export TERMINAL=st
+export PAGER=less
 # st delete key fix. See ~/.inputrc also
 if [ $TERM = "st-256color" ]; then
     tput smkx

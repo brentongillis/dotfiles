@@ -1,6 +1,16 @@
-# standard initialization
-rename-session -t 0 standard
-rename-window -t 0 git
-splitw -h -p 50 -c "/home/brenton/github/bestech/client"
-splitw -v -p 50 -t 0
-splitw -v -p 50 -t 1
+# This tmux statusbar config was created by tmuxline.vim
+# on Wed, 22 Jul 2015
+
+set -g pane-border-style fg=colour18
+set -g pane-active-border-style "bg=default fg=colour19"
+
+set -g status-bg "colour18"
+set -g status-justify "centre"
+set -g status-left-length "100"
+set -g status "on"
+set -g status-right-length "100"
+setw -g window-status-separator ""
+set -g status-left "#[fg=colour18,bg=colour20] #S #[fg=colour20,bg=colour19,nobold,nounderscore,noitalics]#[fg=colour21,bg=colour19] #F #[fg=colour19,bg=colour18,nobold,nounderscore,noitalics]#[fg=colour8,bg=colour18] #W #[fg=colour18,bg=colour18,nobold,nounderscore,noitalics]"
+set -g status-right "#[fg=colour18,bg=colour18,nobold,nounderscore,noitalics]#[fg=colour8,bg=colour18] %a #[fg=colour19,bg=colour18,nobold,nounderscore,noitalics]#[fg=colour21,bg=colour19] %b %d  %R #[fg=colour20,bg=colour19,nobold,nounderscore,noitalics]#[fg=colour18,bg=colour20] #H "
+setw -g window-status-format "#[fg=colour18,bg=colour18,nobold,nounderscore,noitalics]#[fg=colour19,bg=colour18] #I  #W #[fg=colour18,bg=colour18,nobold,nounderscore,noitalics]"
+setw -g window-status-current-format "#[fg=colour18,bg=colour19,nobold,nounderscore,noitalics]#[fg=colour21,bg=colour19] #I  #W #[fg=colour19,bg=colour18,nobold,nounderscore,noitalics]"

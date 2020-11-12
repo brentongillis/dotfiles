@@ -117,12 +117,20 @@ bindsym $mod+r mode "resize"
 # set $urgent-bg-color     #bf616a
 
 # Arc
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $active-color        #3f4757
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+# set $bg-color            #2f343f
+# set $inactive-bg-color   #2f343f
+# set $active-color        #3f4757
+# set $text-color          #f3f4f5
+# set $inactive-text-color #676E7D
+# set $urgent-bg-color     #E53935
+
+# solarized-dark
+set $bg-color            #002b36
+set $inactive-bg-color   #002b36
+set $active-color        #073642
+set $text-color          #93a1a1
+set $inactive-text-color #586e75
+set $urgent-bg-color     #dc322f
 
 # window colors
 #                       border              background         text                 indicator
