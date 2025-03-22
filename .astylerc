@@ -2,8 +2,9 @@
 
 --mode=c
 
+--style=java
 # --style=kr
---style=linux
+# --style=linux
 --lineend=linux
 
 --indent=force-tab=4

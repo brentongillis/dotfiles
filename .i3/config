@@ -1,17 +1,22 @@
 # i3 config file
 
 set $mod Mod4
-# font pango:Liberation Mono 10
 font pango:Hack 10
 floating_modifier $mod
+
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# for_window [instance="sp"] floating enable, resize set 1600 500
+# for_window [instance="sp"] move absolute position center
+# for_window [instance="sp"] move window to scratchpad
 
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec st
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec rofi -show run -lines 7 -eh 2 -width 40 -opacity "85" -bw 2 -font "Liberation Sans 18"
-# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run -modi run#drun -theme solarized -font "hack 12"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -34,6 +39,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+shift+b exec bright -s0
+bindsym $mod+t exec touchpad_toggle
 
 bindsym $mod+shift+v split h
 bindsym $mod+v split v
@@ -103,7 +109,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+shift+x exec i3lock -i /home/brenton/pictures/wallpaper/shuttle_flat.png --color "$bg-color"
+bindsym $mod+shift+x exec i3lock -i /home/brenton/pictures/wallpaper/minimal-solarized.jpg --color "$bg-color"
 
 bindsym $mod+r mode "resize"
 
@@ -146,6 +152,7 @@ bar {
     # modifier Mod1
     position top
     status_command i3status
+    # status_command /home/brenton/.bin/test.sh
     colors {
         background $bg-color
         statusline #c0c5ce
@@ -176,6 +183,8 @@ bindsym XF86AudioNext exec cmus-remote -n
 # bindsym XF86AudioStop exec cmus-remote -r
 bindsym XF86AudioPrev exec cmus-remote -r
 
-exec_always feh --bg-scale /home/brenton/pictures/misc/shuttle_edit.jpg
+# exec_always feh --bg-scale /home/brenton/pictures/misc/shuttle_edit.jpg
 # exec_always feh --bg-scale /home/brenton/pictures/wallpaper/shuttle_flat.png
-# exec_always feh --bg-scale /home/brenton/pictures/i_want_to_be_here.jpg
+exec_always feh --bg-scale /home/brenton/pictures/wallpaper/minimal-solarized.jpg
+# exec_always feh --bg-fill /home/brenton/pictures/wallpaper/solarized_bubbles.png
+# exec_always feh --bg-scale /home/brenton/pictures/wallpaper/solarized_triangles.jpg

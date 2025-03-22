@@ -21,7 +21,8 @@
 #define BRIGHTNESS "/sys/class/backlight/intel_backlight/brightness"
 #define TRUE 1
 #define FALSE 0
-#define STEP 100
+/* #define STEP 1 */
+#define STEP 50
 
 // PROTOTYPES - It is nice to see all functions in one glance
 static void parse_args(int argc, char *argv[]);
@@ -43,7 +44,7 @@ static const struct option long_options[] = {
 	{0, 0, 0, 0}
 };
 
-static const char *VERSION_MSG = "Copyright (C) 2020 Brenton Gillis\n";
+static const char *VERSION_MSG = "Copyright (C) 2022 Brenton Gillis\n";
 
 typedef struct {
 	int set;

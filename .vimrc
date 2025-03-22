@@ -14,19 +14,22 @@ Plugin 'honza/vim-snippets'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/html5.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'maralla/completor.vim'
-Plugin 'maralla/completor-typescript'
+Plugin 'bfrg/vim-cpp-modern'
+"
+Plugin 'valloric/youcompleteme'
+" Plugin 'dense-analysis/ale'
+"
 Plugin 'leafgarland/typescript-vim'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-surround'
 Plugin 'cespare/vim-toml'
-Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'rust-lang/rust.vim'
 
 let mapleader = "-"
 
@@ -34,12 +37,59 @@ filetype plugin indent on
 set hidden
 syntax enable
 set t_Co=256
-set background=dark
 let base16colorspace=256
+set background=dark
+" colorscheme default
+" let g:solarized_termcolors=256
 colorscheme base16-solarized-dark
 
-" nnoremap <C-e> :Explore<CR>
-map <C-e> :NERDTreeToggle<CR>
+" set listchars+=tab:▸-,space:·,lead:·
+set listchars=tab:▸-,lead:·
+function! g:ToggleListChars()
+    set list!
+endfunc
+nnoremap <F5> :call g:ToggleListChars()<cr>
+
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: [".git/", "git ls-files --cached --others --exclude-standard -- %s ':!:*src/libs/*' ':!:*src/assets/*'"],
+    \ },
+    \ 'fallback': 'find %s -type f',
+\ }
+
+" ale experiments!
+" \  'rust': ['analyzer'],
+" let g:ale_linters = {
+" \  'rust': ['rust-analyzer'],
+" \}
+
+" let g:ale_fixers = {
+" \  'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lines'],
+" \}
+
+" let g:ale_completion_enabled = 1
+
+highlight YcmErrorSection ctermbg=88 ctermfg=250
+highlight YcmErrorSign ctermbg=88 ctermfg=250
+highlight YcmWarningSection ctermbg=202 ctermfg=27
+highlight YcmWarningSign ctermbg=202 ctermfg=27
+let g:ycm_key_list_stop_completion = ['<C-m>']
+" let g:ycm_extra_conf_globlist = ['~/github/brentongillis/*', '!~/*']
+
+autocmd FileType rust nnoremap <buffer> <silent> K :YcmCompleter GetDoc<cr>:wincmd k<cr>
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+" this will auto-open the bitch
+" augroup ProjectDrawer
+"     autocmd!
+"     autocmd VimEnter * :Vexplore
+" augroup END
+
+nnoremap <C-e> :Lexplore<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
@@ -52,8 +102,13 @@ let g:formatters_c = ['custom_c']
 " Enable markup tag matching using %
 runtime macros/matchit.vim
 
+let g:cpp_function_highlight = 1
+let g:cpp_attributes_highlight = 1
+let g:cpp_member_highlight = 1
+let g:cpp_simple_highlight = 0
+
 " stop vim-go from opening the preview window on tab completion
-" set completeopt-=preview
+set completeopt-=preview
 set ttyfast
 set ttymouse=xterm
 set ttyscroll=3
@@ -64,7 +119,7 @@ set nobackup
 set nowritebackup
 set noshowmode
 set pastetoggle=<F2>
-set wildignore+=*/node_modules/*,*.o,*/target/*,*/client/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*,*/vendor/*,*/build/*,*/bak/*,*/release/*,*client/src/assets/*,*/_ignore/*
+set wildignore+=*/node_modules/*,*.o,*/target/*,*/client/src/libs/*,*/tmp/*,*/dist/*,*/bower_components/*,*/vendor/*,*/build/*,*/bak/*,*/release/*,*client/src/assets/*,*/_ignore/*,*/assets/*
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -76,19 +131,26 @@ set wildmenu
 set laststatus=2
 set incsearch
 set ignorecase
+set smartcase
 set signcolumn=yes
 set lazyredraw
+" set relativenumber
+syntax sync minlines=256
+set synmaxcol=400
+set re=1
 let g:netrw_liststyle=3
-let NERDTreeRespectWildIgnore=1
 
-" Enable lsp for go by using gopls
-let g:completor_filetype_map = {}
-let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls'}
-let g:completor_clang_binary = '/usr/lib/llvm/11/bin/clang'
-let g:completor_node_binary = '/usr/bin/node'
-let g:completor_python_binary = '/usr/bin/python'
+let g:rustfmt_autosave=1
+
+" let g:completor_filetype_map = {}
+" let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls'}
+" let g:completor_filetype_map.c = {'ft': 'lsp', 'cmd': 'clangd'}
+" let g:completor_node_binary = '/usr/bin/node'
+" let g:completor_python_binary = '/usr/bin/python'
 
 autocmd BufRead,BufNewFile *.h set filetype=c
+autocmd BufRead,BufNewFile *.inl set filetype=c
+autocmd BufRead,BufNewFile *.tmpl set filetype=gohtmltmpl
 autocmd FileType c setlocal noexpandtab
 
 map <silent> <C-h> :wincmd h<CR>
@@ -105,7 +167,7 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 autocmd FileType gohtmltmpl,html,xhtml setlocal sw=2 ts=2 sts=2
-autocmd FileType typescript setlocal sw=2 ts=2 sts=2
+autocmd FileType typescript,css setlocal sw=2 ts=2 sts=2
 
 if has('conceal')
     set conceallevel=2 concealcursor=niv
@@ -129,6 +191,24 @@ let g:go_debug_windows = {
       \ 'vars':       'rightbelow 60vnew',
       \ 'stack':      'rightbelow 10new',
       \ }
+
+" Replace lightline with custom statusline
+" function! GitBranch()
+"     return system("git rev-parse --abbrev-ref HEAD 2> /dev/null | tr -d '\n'")
+" endfunction
+
+" function! StatuslineGit()
+"   let l:branchname = GitBranch()
+"   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+" endfunction
+
+" set statusline=
+" set statusline+=%{mode()}
+" set statusline+=%#PmenuSel#
+" set statusline+=%{StatuslineGit()}
+" set statusline+=%#LineNr#
+" set statusline+=\ %f
+" END Replace lightline with custom statusline
 
 let g:lightline = {
             \ 'colorscheme': 'base16_ocean',
